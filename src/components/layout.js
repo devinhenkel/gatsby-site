@@ -20,25 +20,35 @@ const Layout = ({ children }) => (
           siteMetadata {
             title
           }
+        },
+        contentfulBanner(title: {eq: "CedarBanner"}) {
+          productLogo {
+            fluid {
+              src
+            }
+          }
         }
       }
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} logoImage={data.contentfulBanner.productLogo.fluid.src} />
         <div
           style={{
             margin: `0 auto`,
-            maxWidth: 960,
+            maxWidth: 1200,
             padding: `0px 1.0875rem 1.45rem`,
             paddingTop: 0,
           }}
         >
           <main>{children}</main>
           <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+            © {new Date().getFullYear()} PwC, All rights reserved
+            <div id="footer-links">
+              <span>Terms of use</span>
+              <span>Privacy policy</span>
+              <span>Contact Us</span>
+            </div>
           </footer>
         </div>
       </>
